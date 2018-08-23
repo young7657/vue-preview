@@ -9,6 +9,16 @@ const VuePreview = {
       props: {
         slides: Array
       },
+      data () {
+       return {
+        deg: 0
+       }
+      },
+      computed: {
+        rotate () {
+          return 'pswp__rotate_' + this.deg
+        }
+      },
       methods: {
         initPhotoSwipeFromDOM (gallerySelector) {
           const self = this
@@ -174,6 +184,12 @@ const VuePreview = {
           if (hashData.pid && hashData.gid) {
             openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true)
           }
+        },
+        TurnRight () {
+          this.deg = (this.deg + 1) % 4
+        },
+        TurnLeft () {
+          this.deg = (this.deg - 1) % 4
         }
       },
       mounted () {
